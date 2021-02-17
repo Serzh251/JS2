@@ -17,7 +17,13 @@ class Products {
             { title: 'Gamepad', id: 4, price: 87 }
         ];
     }
-
+    sumPrice() {
+        let summary = 0;
+        for (let el of this.data) {
+            summary += el.price;
+        }
+        return summary
+    }
     _render() {
         for (let data of this.data) {
             const product = new ProductItem(data);
@@ -52,18 +58,45 @@ class ProductItem {
 
 
 class Cart {
-    // some - cartItems array
+    data = []; // - cartItems array
+    totalCost = 0; // общая стоимость товаров в корзине
+    totalNumberProd = 0; // общее кол-во товаров в корзине
+    orderStatus = ''; // статус выполнения заказа
+    orderNumber = ''; // номер заказа, с буквы и цифры
+    trackingNumber = '' // номер отслеживания
 
-    // someMethod() - метод делает то-то
+    totalCostCart() { //метод подсчета общей стоимости товаров в корзине
+
+    }
+
+    totalProdCart() { // метод подсчета общего кол-ва товара в корзине
+
+    }
 }
 
 class CartItem {
     // some - cartItems array
+    countProduct = 0; // количество товара в корзине
+    stockAvailability = 0; // количество доступного товара на складе
+    productName = ''; // наименование товара
+    shortDesc = ''; // краткое описание товара
 
-    // someMethod() - метод делает то-то
+    render() { // метод, позволяющий отрендерить одну позицию товара в корзине
+
+    }
+
+    addProduct() { //метод добавления товара в корзину
+
+    }
+
+    deleteProduct() { //метод удаления товара из корзины
+
+    }
+
 }
 
 const list = new Products('.products');
+console.log(list.sumPrice());
 
 
 
