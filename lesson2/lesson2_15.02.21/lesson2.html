@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // ES5
+
+    // function Person(name, year) {
+    //     this.name = name;
+    //     this.year = year;
+    // }
+    //
+    // Person.prototype.calcAge = function () {
+    //     console.log(new Date().getFullYear() - this.year);
+    // };
+    //
+    // function Teacher(name, year, subject) {
+    //     Person.call(this, name, year);
+    //     this.subject = subject;
+    // }
+    //
+    // Teacher.prototype = Object.create(Person.prototype);
+    // Teacher.prototype.constructor = Teacher;
+    //
+    // var john = new Person('John', 1990);
+    // var ann = new Teacher('Ann', 1980, 'math');
+
+    // ES6
+
+    class Person {
+        _name = '';
+        _year = 0;
+        _some = 0;
+
+        constructor(name, year) {
+            this._name = name;
+            this._year = year;
+        }
+
+        calcAge() {
+            this._some = 10;
+            console.log(new Date().getFullYear() - this._year);
+        }
+
+        _sayHi() {
+            return `${this._name} says hi`;
+        }
+    }
+
+    class Teacher extends Person {
+        constructor(name, year, subject) {
+            super(name, year);
+            this.subject = subject;
+        }
+
+        _sayHi() {
+            return `${super._sayHi()} as teacher`;
+        }
+
+        static triple(x) {
+            return x * 3;
+        }
+    }
+
+    let john = new Person('John', 1990);
+    let ann = new Teacher('Ann', 1980, 'math');
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market</title>
+</head>
+
+<body>
+    <header>
+    </header>
+    <main>
+        <form name="calculator">
+            <h3>Выберите тип бургера</h3>
+            <select id="type">
+                <option value="small">Маленький (50 рублей, 20 калорий)</option>
+                <option value="big">Большой (100 рублей, 40 калорий)</option>
+            </select>
+
+            <h3>Добавьте начинку к выбранному бургеру</h3>
+            <select id="topping">
+                <option value="cheeze"> С сыром (+10 рублей, +20 калорий)</option>
+                <option value="salad"> С салатом (+20 рублей, +5 калорий)</option>
+                <option value="potato"> С картофелем (+15 рублей, +10 калорий)</option>
+            </select>
+
+            <h3>Выберите тип приправы, если требуется</h3>
+            <br>
+            <input type="checkbox" id="parsley">Дополнительно посыпать приправой (+15 рублей, +0 калорий)
+            <br>
+            <input type="checkbox" id="sauce">Дополнительно полить майонезом (+20 рублей, +5 калорий)
+        </form>
+        <button class="btn-order" type="button">Заказать</button>
+        <div id="result"></div>
+    </main>
+    <script defer src="js/main.js"></script>
+</body>
+
+</html>
