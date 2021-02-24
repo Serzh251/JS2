@@ -58,30 +58,16 @@ class ProductItem {
 
 
 class Cart {
-    data = []; // - cartItems array
+    cartItems = [];
     totalCost = 0; // общая стоимость товаров в корзине
     totalNumberProd = 0; // общее кол-во товаров в корзине
     orderStatus = ''; // статус выполнения заказа
-    orderNumber = ''; // номер заказа, с буквы и цифры
-    trackingNumber = '' // номер отслеживания
 
     totalCostCart() { //метод подсчета общей стоимости товаров в корзине
 
     }
 
     totalProdCart() { // метод подсчета общего кол-ва товара в корзине
-
-    }
-}
-
-class CartItem {
-    // some - cartItems array
-    countProduct = 0; // количество товара в корзине
-    stockAvailability = 0; // количество доступного товара на складе
-    productName = ''; // наименование товара
-    shortDesc = ''; // краткое описание товара
-
-    render() { // метод, позволяющий отрендерить одну позицию товара в корзине
 
     }
 
@@ -92,6 +78,22 @@ class CartItem {
     deleteProduct() { //метод удаления товара из корзины
 
     }
+}
+
+class CartItem {
+    // some - cartItems array
+    productName = ''; // наименование товара
+    shortDesc = ''; // краткое описание товара
+
+    constructor(product, img = 'https://placehold.it/200x150') {
+        ({ productName: this.productName, price: this.price, id: this.id } = product);
+        this.img = img;
+    }
+    render() { // метод, позволяющий отрендерить одну позицию товара в корзине
+
+    }
+
+
 
 }
 

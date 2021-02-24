@@ -8,6 +8,9 @@ header{
     color: #fafafa;
     padding: 30px 80px;
 }
+a{
+    text-decoration-line: none;
+}
 button{
     outline: none;
 }
