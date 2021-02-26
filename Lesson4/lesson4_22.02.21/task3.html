@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const regName = /[а-яА-Я]/g;
+        const regPhone = /[\+\d{1}\(\d{3}\)\d{3}\-\d{3}]/g;
+        const regMail = /[a-z\.-]*@mail.ru/g;
+        const regText = /[a-zA-Zа-яА-Я]/g;
+
+        function validForm(form) {
+            let name = form.name.value;
+            let nameElement = document.getElementById('nameErr')
+
+            let phone = form.phone.value;
+            let phoneElement = document.getElementById('phoneErr')
+
+            let email = form.email.value;
+            let emailElement = document.getElementById('emailErr')
+
+            let text = form.text.value;
+            let textElement = document.getElementById('textErr')
+
+            if (!regName.test(name)) {
+                nameElement.innerHTML = `Вы ввели не корректное имя`;
+                return;
+            }
+            if (!regPhone.test(phone)) {
+                phoneElement.innerHTML = `Вы ввели не корректный телефон`;
+                return;
+            }
+            if (!regMail.test(email)) {
+                emailElement.innerHTML = `Вы ввели не корректный email`;
+                return;
+            }
+            if (!regText.test(text)) {
+                textElement.innerHTML = `Вы ввели не корректный текст`;
+                return;
+            }
+            window.location = 'formGood.html'
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <form action="" method="POST" name="forms" id="form">
+        <h3>форма обратной связи</h3>
+        <input type="text" name="name" placeholder="введите имя, только буквы">
+        <span style="color: red" id="nameErr"></span><br><br>
+
+        <input type="text" name="phone" size="50" placeholder="введите номер телефона в формате +7(000)000-0000">
+        <span style="color: red" id="phoneErr"></span><br><br>
+
+        <input type="text" name="email" size="80"
+            placeholder="введите E-mail, имеющим вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru">
+        <span style="color: red" id="emailErr"></span><br><br>
+
+        <input type="text" name="text" size="40" placeholder="введите произвольный текст">
+        <span style="color: red" id="textErr"></span><br><br>
+
+        <input type="button" onclick="validForm(document.getElementById('form'))" value="Отправить">
+    </form>
+
+</body>
+
+</html>
