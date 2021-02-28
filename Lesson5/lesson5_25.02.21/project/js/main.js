@@ -6,7 +6,11 @@ const App = {
             API: `https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses`,
             catalogUrl: '/catalogData.json',
             products: [],
-            imgCatalog: 'https://placehold.it/200x150'
+            filtered: [],
+            imgCatalog: 'https://placehold.it/200x150',
+            isVisibleCart: true,
+            isEmptyCart: true,
+            cartItems: []
         }
     },
     methods: {
@@ -16,8 +20,51 @@ const App = {
                 .catch(e => console.log(e));
         },
         addProduct(product) {
-            console.log(product);
-            console.log(product.id_product);
+            // console.log(product);
+            // console.log(product.id_product);
+            let item = {};
+            for (let el in this.cartItems) {
+                if (this.cartItems[el].id_product == product.id_product) {
+                    this.cartItems[el].quantity += 1;
+                    return;
+                }
+            }
+            item = {
+                id_product: product.id_product,
+                product_name: product.product_name,
+                price: product.price,
+                quantity: 1
+            };
+
+            this.cartItems.push(item);
+            this.isEmptyCart = false;
+        },
+
+        delProduct(id) {
+            for (let el in this.cartItems) {
+                if (this.cartItems[el].id_product == id) {
+                    if (this.cartItems[el].quantity > 1) {
+                        this.cartItems[el].quantity -= 1;
+                        return;
+                    } else {
+                        this.cartItems.splice(el, 1);
+                    }
+                }
+            }
+        },
+
+        filterProducts(value) {
+            const regexp = new RegExp(value, 'i');
+            this.filtered = this.products.filter(el => regexp.test(el.product_name));
+            // this.products = this.filtered; - если так делать, то все работает, но меняется сам каталог, поэтому требуется перезагрузка страницы
+        },
+
+        showCart() {
+            if (this.isVisibleCart) {
+                this.isVisibleCart = false;
+            } else {
+                this.isVisibleCart = true;
+            }
         }
     },
     mounted() {
@@ -38,28 +85,18 @@ const App = {
 
 Vue.createApp(App).mount('#app');
 
-
-// let getRequest = url => {
-//     return new Promise((resolve, reject) => {
-//         let xhr = new XMLHttpRequest();
-//         // window.ActiveXObject -> new ActiveXObject();
-//         xhr.open('GET', url, true);
-//         xhr.onreadystatechange = () => {
-//             if (xhr.readyState !== 4) {
-//                 return;
-//             }
-//
-//             if (xhr.status !== 200) {
-//                 reject('some error');
-//                 return;
-//             }
-//
-//             resolve(xhr.responseText);
+// filter(value) {
+//     // const regexp = new RegExp(value, 'i');
+//     this.filtered = this.products.filter(el => regexp.test(el.product_name));
+//     this.products.forEach(el => {
+//         const block = document.querySelector(`.product-item[data-id="${el.id_product}"]`);
+//         if (!this.filtered.includes(el)) {
+//             block.classList.add('invisible');
+//         } else {
+//             block.classList.remove('invisible');
 //         }
-//     });
-// };
-//
-// getRequest('tel.json').then()
+//     })
+// }
 
 // class Item {
 //     product_name = '';
@@ -193,18 +230,7 @@ Vue.createApp(App).mount('#app');
 //             .then(data => this.handleData(data));
 //     }
 //
-//     filter(value) {
-//         const regexp = new RegExp(value, 'i');
-//         this.filtered = this.products.filter(el => regexp.test(el.product_name));
-//         this.products.forEach(el => {
-//             const block = document.querySelector(`.product-item[data-id="${el.id_product}"]`);
-//             if (!this.filtered.includes(el)) {
-//                 block.classList.add('invisible');
-//             } else {
-//                 block.classList.remove('invisible');
-//             }
-//         })
-//     }
+
 //
 //
 //     _init() {
@@ -215,10 +241,7 @@ Vue.createApp(App).mount('#app');
 //             }
 //         });
 //
-//         document.querySelector(`.search-form`).addEventListener('submit', e => {
-//             e.preventDefault();
-//             this.filter(document.querySelector(`.search-field`).value);
-//         });
+
 //     }
 // }
 //

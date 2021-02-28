@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Store</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div id="app">
         <header>
             <div class="logo">E-shop</div>
             <div class="cart">
                 <form action="#" class="search-form">
-                    <input type="text" class="search-field">
-                    <button class="btn-search" type="submit">
+                    <input type="text" class="search-field" v-model="value">
+                    <button class="btn-search" @click="filterProducts(value)" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-                <button class="btn-cart" type="button">Корзина</button>
-                <div class="cart-block invisible"></div>
+                <button class="btn-cart" type="button" @click="showCart()">Корзина</button>
+                <div v-bind:class="{ invisible: isVisibleCart }">
+
+                    <div class="cart-block ">
+                        <div v-if="isEmptyCart">Нет данных</div>
+                        <div class="cart-item product-bio" v-for="el of cartItems">
+                            <div>{{ el.product_name }}</div>
+                            <div class="product-price">{{ el.price }}</div>
+                            <div class="product-quantity">{{ el.quantity }}</div>
+                            <button class="del-btn" @click="delProduct(el.id_product)">X</button>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </header>
         <main>
             <div class="products">
+                <!-- <div v-for="filteredEl of filtered"> -->
+                <!-- пытался перебрать отфильтрованный массив, и если id товара совпадает с товарами в product, то показывать товар. но что то как то не до конца идея -->
                 <div class="product-item" v-for="el of products" :key="el.id_product">
+                    <!-- <div v-if="el.id_product != filteredEl.id_product">тест</div> -->
                     <img :src="imgCatalog" :alt="el.product_name">
                     <div class="desc">
                         <h3>{{ el.product_name }}</h3>
@@ -31,13 +49,17 @@
                         <button class="buy-btn" @click="addProduct(el)">Купить</button>
                     </div>
                 </div>
+                <!-- </div> -->
             </div>
         </main>
     </div>
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
-<script defer src="js/main.js"></script>
+    <script defer src="js/main.js"></script>
 </body>
+
 </html>
 
 <!--<div class="cart-item" data-id="${this.id_product}">-->
