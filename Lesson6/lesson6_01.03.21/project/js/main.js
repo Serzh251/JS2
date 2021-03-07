@@ -1,28 +1,45 @@
-import {Cart} from "./Cart.js";
-import {Products} from "./Products.js";
+import { Cart } from "./Cart.js";
+import { Products } from "./Products.js";
+import { UserFilter } from "./UserFilter.js";
+import { Search } from "./Search.js";
+import { Err } from "./Err.js";
+import { Error } from "./Error.js";
 
 const App = {
     components: {
-      Cart,
-      Products
+        Cart,
+        Products,
+        Search,
+        Err,
+        Error,
+        // UserFilter,
+
     },
     data() {
         return {
-            API: `https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses`,
-            userSearch: ''
+            API: `https://ra.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses`,
+            userSearch: '',
+            errFlag: true
         }
     },
     provide() {
-       return {
-           API: this.API,
-           getJson: this.getJson
-       }
+        return {
+            API: this.API,
+            getJson: this.getJson
+        }
     },
     methods: {
-        getJson(url){
+        getJson(url) {
+            // this.$emit('errorFlagTrue', true)
             return fetch(url)
                 .then(result => result.json())
-        }
+                .catch(error => this.$refs.error.setText(error));
+            // .catch(err => this.$refs.err.errFlag(err))
+            // .catch(errFlag = true)
+        },
+        // errorFlagTrueFunc(flag) {
+        //     console.log(flag)
+        // }
     },
 };
 

@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Store</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div id="app">
         <header>
             <div class="logo">E-shop</div>
             <div class="cart">
-                <form action="#" method="post" class="search-form" @submit.prevent="">
-                    <input type="text" class="search-field" v-model.lazy="userSearch">
-                    <button class="btn-search" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
+                <!-- <userfilter ref="userfilter"></userfilter> -->
+                <search ref="search"></search>
                 <cart ref="cart"></cart>
             </div>
         </header>
         <main>
             <products ref="products"></products>
+            <error ref="error"></error>
+            <!-- <err ref="err"></err> -->
+            <!-- <main @errorFlagTrue="errorFlagTrueFunc"></main> -->
         </main>
     </div>
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
-<script defer src="js/main.js" type="module"></script>
+    <script defer src="js/main.js" type="module"></script>
 </body>
+
 </html>
 
 <!--<div class="cart-item" data-id="${this.id_product}">-->
