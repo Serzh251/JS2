@@ -12,22 +12,22 @@ const server = http.createServer((req, res) => {
 
     if (req.url === '/api/products') {
         res.write(JSON.stringify([
-            { name: 'Notebook', price: 2000 },
-            { name: 'Notebook', price: 2000 },
-            { name: 'Notebook', price: 2000 }
+            {name: 'Notebook', price: 2000},
+            {name: 'Notebook', price: 2000},
+            {name: 'Notebook', price: 2000}
         ]));
         res.end();
     }
 });
 
 // server.on('connection', () => {
-//     console.log('new connection');
+//    console.log('new connection');
 // });
 
 server.listen(3000);
 console.log('Server started at port 3000....');
 
-console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+// console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 // fs.writeFile('some.txt', 'i\'m new', (err) => {
 //    if (err) {
@@ -42,5 +42,6 @@ console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 // console.log(os.platform());
 // console.log(os.cpus());
+// console.log(os.type());
 
 // func(20);
