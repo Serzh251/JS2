@@ -11,6 +11,10 @@ module.exports = {
         publicPath: "",
         filename: "js/[name].js"
     },
+    devServer: {
+        liveReload: true,
+        watchContentBase: true,
+    },
     target: "web",
     module: {
         rules: [
